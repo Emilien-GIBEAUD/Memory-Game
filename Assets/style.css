@@ -1,0 +1,21 @@
+* {    /* RESET */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;}
+
+#game_board {
+  display: grid;
+  grid-template-columns: repeat(6, 100px);
+  grid-template-rows: repeat(5, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+  background-color: whitesmoke;
+}
