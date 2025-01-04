@@ -22,8 +22,12 @@ body {
 .card {
   background-color: whitesmoke;
   border-radius: 20px;
+  cursor: pointer;      /* affiche le doigt au survol de l'élément */
 }
 .card_content {
   width: 60px;
   padding: 2px;
+}
+.card .card_content {
+  opacity: 0;
 }
