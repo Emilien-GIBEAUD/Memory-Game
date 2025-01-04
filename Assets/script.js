@@ -10,6 +10,8 @@ const game_board = document.getElementById("game_board");   // Récupère l'ID "
 /* fonction qui crée une carte à partir d'une URL/adresse card_address
 <div class="card" data-value="./Adresse/de/l'image.svg">
   <img class="card_content" src="./Adresse/de/l'image.svg">
+    <p>nom anglais</p>
+    <p><em>(nom français)</em></p>
 </div> */
 function create_card(card_address) {
   const card = document.createElement("div");           // crée une <div>
@@ -20,6 +22,18 @@ function create_card(card_address) {
   card_content.classList.add("card_content");           // avec la class="card_content"
   card_content.src = `${card_address}`;                 // avec la src="card_address"
   card.appendChild(card_content);                       // ajoute l'enfant "card_content" à "card"
+
+  const name_en = document.createElement("p");          // crée un <p>
+  name_en.classList.add("name_en");                     // avec la class="name_en"
+  const txt_en = document.createTextNode("english");    // nom anglais présent dans la balise <p>
+  name_en.appendChild(txt_en);                          // ajoute l'enfant "txt_en" à "name_en"
+  card.appendChild(name_en);                            // ajoute l'enfant "name_en" à "card"
+
+  const name_fr = document.createElement("p");
+  name_fr.classList.add("name_fr");
+  const txt_fr = document.createTextNode("français");   // nom français
+  name_fr.appendChild(txt_fr);
+  card.appendChild(name_fr);
 
   card.addEventListener("click", on_card_click);
 

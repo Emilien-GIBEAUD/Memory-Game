@@ -20,17 +20,23 @@ body {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: whitesmoke;
   border-radius: 20px;
   cursor: pointer;      /* affiche le doigt au survol de l'élément */
 }
 .card_content {
-  width: 60px;
-  padding: 2px;
+  height: 60px;
+  padding: 2px 20px;
 }
-.card .card_content {
-  opacity: 0;
+.card .card_content, .card .name_en, .card .name_fr {
+  opacity: 0.1;
 }
-.card.flip .card_content {
+.card.flip .card_content, .card.flip .name_en, .card.flip .name_fr  {
   opacity: 1;
+}
+.name_fr, .name_en{
+  width: 100%;
 }
