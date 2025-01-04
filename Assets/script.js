@@ -1,10 +1,50 @@
 const available_cards = [
-  "./Assets/icon/ant.svg", "./Assets/icon/bat.svg", "./Assets/icon/bear.svg", "./Assets/icon/bee.svg", "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/cow.svg", "./Assets/icon/dog.svg", "./Assets/icon/donkey.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fish.svg", "./Assets/icon/fly.svg", "./Assets/icon/fox.svg", "./Assets/icon/frog.svg", "./Assets/icon/goat.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg", "./Assets/icon/ladybug.svg", "./Assets/icon/monkey.svg", "./Assets/icon/otter.svg", "./Assets/icon/pig.svg", "./Assets/icon/rabbit.svg", "./Assets/icon/shark.svg", "./Assets/icon/sheep.svg", "./Assets/icon/snail.svg", "./Assets/icon/snake.svg", "./Assets/icon/spider.svg", "./Assets/icon/whale.svg"
+  // "./Assets/icon/ant.svg", "./Assets/icon/bat.svg", "./Assets/icon/bear.svg", "./Assets/icon/bee.svg", "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/cow.svg", "./Assets/icon/dog.svg", "./Assets/icon/donkey.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fish.svg", "./Assets/icon/fly.svg", "./Assets/icon/fox.svg", "./Assets/icon/frog.svg", "./Assets/icon/goat.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg", "./Assets/icon/ladybug.svg", "./Assets/icon/monkey.svg", "./Assets/icon/otter.svg", "./Assets/icon/pig.svg", "./Assets/icon/rabbit.svg", "./Assets/icon/shark.svg", "./Assets/icon/sheep.svg", "./Assets/icon/snail.svg", "./Assets/icon/snake.svg", "./Assets/icon/spider.svg", "./Assets/icon/whale.svg"
+  ["./Assets/icon/ant.svg",         "ant",         "fourmi"       ],
+  ["./Assets/icon/bat.svg",         "bat",         "chauve-souris"],
+  ["./Assets/icon/bear.svg",        "bear",        "ours"         ],
+  ["./Assets/icon/bee.svg",         "bee",         "abeille"      ],
+  ["./Assets/icon/butterfly.svg",   "butterfly",   "papillon"     ],
+  ["./Assets/icon/cat.svg",         "cat",         "chat"         ],
+  ["./Assets/icon/cow.svg",         "cow",         "vache"        ],
+  ["./Assets/icon/dog.svg",         "dog",         "chien"        ],
+  ["./Assets/icon/donkey.svg",      "donkey",      "âne"          ],
+  ["./Assets/icon/duck.svg",        "duck",        "canard"       ],
+  ["./Assets/icon/eel.svg",         "eel",         "anguille"     ],
+  ["./Assets/icon/falcon.svg",      "falcon",      "faucon"       ],
+  ["./Assets/icon/fish.svg",        "fish",        "poisson"      ],
+  ["./Assets/icon/fly.svg",         "fly",         "mouche"       ],
+  ["./Assets/icon/fox.svg",         "fox",         "renard"       ],
+  ["./Assets/icon/frog.svg",        "frog",        "grenouille"   ],
+  ["./Assets/icon/goat.svg",        "goat",        "chèvre"       ],
+  ["./Assets/icon/grasshopper.svg", "grasshopper", "sauterelle"   ],
+  ["./Assets/icon/horse.svg",       "horse",       "cheval"       ],
+  ["./Assets/icon/ladybug.svg",     "ladybug",     "coccinelle"   ],
+  ["./Assets/icon/monkey.svg",      "monkey",      "singe"        ],
+  ["./Assets/icon/otter.svg",       "otter",       "loutre"       ],
+  ["./Assets/icon/pig.svg",         "pig",         "cochon"       ],
+  ["./Assets/icon/rabbit.svg",      "rabbit",      "lapin"        ],
+  ["./Assets/icon/shark.svg",       "shark",       "requin"       ],
+  ["./Assets/icon/sheep.svg",       "sheep",       "mouton"       ],
+  ["./Assets/icon/snail.svg",       "snail",       "escargot"     ],
+  ["./Assets/icon/snake.svg",       "snake",       "serpent"      ],
+  ["./Assets/icon/spider.svg",      "spider",      "araignée"     ],
+  ["./Assets/icon/whale.svg",       "whale",       "baleine"      ]
 ];
 
 let selected_cards = [
-  "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fly.svg", "./Assets/icon/frog.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
+  // "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fly.svg", "./Assets/icon/frog.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
+  ["./Assets/icon/butterfly.svg",   "butterfly",   "papillon"     ],
+  ["./Assets/icon/cat.svg",         "cat",         "chat"         ],
+  ["./Assets/icon/duck.svg",        "duck",        "canard"       ],
+  ["./Assets/icon/eel.svg",         "eel",         "anguille"     ],
+  ["./Assets/icon/falcon.svg",      "falcon",      "faucon"       ],
+  ["./Assets/icon/fly.svg",         "fly",         "mouche"       ],
+  ["./Assets/icon/frog.svg",        "frog",        "grenouille"   ],
+  ["./Assets/icon/grasshopper.svg", "grasshopper", "sauterelle"   ],
+  ["./Assets/icon/horse.svg",       "horse",       "cheval"       ],
 ];
+console.log(selected_cards);
 const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
 
 /* fonction qui crée une carte à partir d'une URL/adresse card_address
@@ -31,7 +71,7 @@ function create_card(card_address) {
 
   const name_fr = document.createElement("p");
   name_fr.classList.add("name_fr");
-  const txt_fr = document.createTextNode("français");   // nom français
+  const txt_fr = document.createTextNode("(français)");   // nom français
   name_fr.appendChild(txt_fr);
   card.appendChild(name_fr);
 
@@ -67,8 +107,12 @@ function on_card_click(elem){
 
 // création des n cartes
 let all_cards = duplicate_array(selected_cards);
+console.log(all_cards);
+
 // mélange des cartes
 all_cards = shuffle_array(all_cards);
+console.log(all_cards);
+
 // affichage des cartes dans le html
 all_cards.forEach(card_to_create => {
   const card_html = create_card(card_to_create);
