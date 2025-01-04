@@ -31,3 +31,6 @@ body {
 .card .card_content {
   opacity: 0;
 }
+.card.flip .card_content {
+  opacity: 1;
+}

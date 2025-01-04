@@ -5,7 +5,6 @@ const available_cards = [
 let selected_cards = [
   "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fly.svg", "./Assets/icon/frog.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
 ];
-console.log(selected_cards);
 const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
 
 /* fonction qui crée une carte à partir d'une URL/adresse card_address
@@ -21,6 +20,9 @@ function create_card(card_address) {
   card_content.classList.add("card_content");           // avec la class="card_content"
   card_content.src = `${card_address}`;                 // avec la src="card_address"
   card.appendChild(card_content);                       // ajoute l'enfant "card_content" à "card"
+
+  card.addEventListener("click", on_card_click);
+
   return card;
 };
 /* //Code pour tester la fonction
@@ -41,6 +43,12 @@ function duplicate_array(array_simple) {
 function shuffle_array (array) {
   const array_shuffled = array.sort(() => 0.5 - Math.random());
   return array_shuffled
+};
+
+// fonction qui retourne une carte au click
+function on_card_click(elem){
+  const card = elem.target.parentElement;   // cible le parent
+  card.classList.add("flip");               // ajoute la class="flip" au parent
 };
 
 // création des n cartes
