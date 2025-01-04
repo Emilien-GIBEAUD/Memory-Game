@@ -3,7 +3,7 @@ const available_cards = [
 ];
 
 let selected_cards = [
-  "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/cow.svg", "./Assets/icon/dog.svg", "./Assets/icon/donkey.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fish.svg", "./Assets/icon/fly.svg", "./Assets/icon/fox.svg", "./Assets/icon/frog.svg", "./Assets/icon/goat.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
+  "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fly.svg", "./Assets/icon/frog.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
 ];
 console.log(selected_cards);
 const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
@@ -37,8 +37,17 @@ function duplicate_array(array_simple) {
   return array_double;
 };
 
+// fonction qui mélange le tableau
+function shuffle_array (array) {
+  const array_shuffled = array.sort(() => 0.5 - Math.random());
+  return array_shuffled
+};
+
 // création des n cartes
 let all_cards = duplicate_array(selected_cards);
+// mélange des cartes
+all_cards = shuffle_array(all_cards);
+// affichage des cartes dans le html
 all_cards.forEach(card_to_create => {
   const card_html = create_card(card_to_create);
   game_board.appendChild(card_html);
