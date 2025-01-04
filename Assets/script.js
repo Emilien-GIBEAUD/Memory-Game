@@ -53,7 +53,7 @@ const game_board = document.getElementById("game_board");   // Récupère l'ID "
     <p>nom anglais</p>
     <p><em>(nom français)</em></p>
 </div> */
-function create_card(card_address) {
+function create_card(card_address, english_name, french_name) {
   const card = document.createElement("div");           // crée une <div>
   card.classList.add("card");                           // avec la class="card"
   card.dataset.value = card_address;                    // avec la data-value="card_address"
@@ -65,13 +65,13 @@ function create_card(card_address) {
 
   const name_en = document.createElement("p");          // crée un <p>
   name_en.classList.add("name_en");                     // avec la class="name_en"
-  const txt_en = document.createTextNode("english");    // nom anglais présent dans la balise <p>
+  const txt_en = document.createTextNode(english_name); // nom anglais présent dans la balise <p>
   name_en.appendChild(txt_en);                          // ajoute l'enfant "txt_en" à "name_en"
   card.appendChild(name_en);                            // ajoute l'enfant "name_en" à "card"
 
   const name_fr = document.createElement("p");
   name_fr.classList.add("name_fr");
-  const txt_fr = document.createTextNode("(français)");   // nom français
+  const txt_fr = document.createTextNode(`(${french_name})`);   // nom français
   name_fr.appendChild(txt_fr);
   card.appendChild(name_fr);
 
@@ -115,6 +115,8 @@ console.log(all_cards);
 
 // affichage des cartes dans le html
 all_cards.forEach(card_to_create => {
-  const card_html = create_card(card_to_create);
+  const card_html = create_card(card_to_create[0],card_to_create[1],card_to_create[2]);
+  // Pas vraiment compris la logique derrière le "card_to_create" et "card_to_create[i]"
+  // Fonctionne très bien en mettant card_to_create[integer, i] d'ailleur ...
   game_board.appendChild(card_html);
 });
