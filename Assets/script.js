@@ -1,52 +1,3 @@
-const available_cards = [
-  // "./Assets/icon/ant.svg", "./Assets/icon/bat.svg", "./Assets/icon/bear.svg", "./Assets/icon/bee.svg", "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/cow.svg", "./Assets/icon/dog.svg", "./Assets/icon/donkey.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fish.svg", "./Assets/icon/fly.svg", "./Assets/icon/fox.svg", "./Assets/icon/frog.svg", "./Assets/icon/goat.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg", "./Assets/icon/ladybug.svg", "./Assets/icon/monkey.svg", "./Assets/icon/otter.svg", "./Assets/icon/pig.svg", "./Assets/icon/rabbit.svg", "./Assets/icon/shark.svg", "./Assets/icon/sheep.svg", "./Assets/icon/snail.svg", "./Assets/icon/snake.svg", "./Assets/icon/spider.svg", "./Assets/icon/whale.svg"
-  ["./Assets/icon/ant.svg",         "ant",         "fourmi"       ],
-  ["./Assets/icon/bat.svg",         "bat",         "chauve-souris"],
-  ["./Assets/icon/bear.svg",        "bear",        "ours"         ],
-  ["./Assets/icon/bee.svg",         "bee",         "abeille"      ],
-  ["./Assets/icon/butterfly.svg",   "butterfly",   "papillon"     ],
-  ["./Assets/icon/cat.svg",         "cat",         "chat"         ],
-  ["./Assets/icon/cow.svg",         "cow",         "vache"        ],
-  ["./Assets/icon/dog.svg",         "dog",         "chien"        ],
-  ["./Assets/icon/donkey.svg",      "donkey",      "âne"          ],
-  ["./Assets/icon/duck.svg",        "duck",        "canard"       ],
-  ["./Assets/icon/eel.svg",         "eel",         "anguille"     ],
-  ["./Assets/icon/falcon.svg",      "falcon",      "faucon"       ],
-  ["./Assets/icon/fish.svg",        "fish",        "poisson"      ],
-  ["./Assets/icon/fly.svg",         "fly",         "mouche"       ],
-  ["./Assets/icon/fox.svg",         "fox",         "renard"       ],
-  ["./Assets/icon/frog.svg",        "frog",        "grenouille"   ],
-  ["./Assets/icon/goat.svg",        "goat",        "chèvre"       ],
-  ["./Assets/icon/grasshopper.svg", "grasshopper", "sauterelle"   ],
-  ["./Assets/icon/horse.svg",       "horse",       "cheval"       ],
-  ["./Assets/icon/ladybug.svg",     "ladybug",     "coccinelle"   ],
-  ["./Assets/icon/monkey.svg",      "monkey",      "singe"        ],
-  ["./Assets/icon/otter.svg",       "otter",       "loutre"       ],
-  ["./Assets/icon/pig.svg",         "pig",         "cochon"       ],
-  ["./Assets/icon/rabbit.svg",      "rabbit",      "lapin"        ],
-  ["./Assets/icon/shark.svg",       "shark",       "requin"       ],
-  ["./Assets/icon/sheep.svg",       "sheep",       "mouton"       ],
-  ["./Assets/icon/snail.svg",       "snail",       "escargot"     ],
-  ["./Assets/icon/snake.svg",       "snake",       "serpent"      ],
-  ["./Assets/icon/spider.svg",      "spider",      "araignée"     ],
-  ["./Assets/icon/whale.svg",       "whale",       "baleine"      ]
-];
-
-let selected_cards = [
-  // "./Assets/icon/butterfly.svg", "./Assets/icon/cat.svg", "./Assets/icon/duck.svg", "./Assets/icon/eel.svg", "./Assets/icon/falcon.svg", "./Assets/icon/fly.svg", "./Assets/icon/frog.svg", "./Assets/icon/grasshopper.svg", "./Assets/icon/horse.svg"
-  ["./Assets/icon/butterfly.svg",   "butterfly",   "papillon"     ],
-  ["./Assets/icon/cat.svg",         "cat",         "chat"         ],
-  ["./Assets/icon/duck.svg",        "duck",        "canard"       ],
-  ["./Assets/icon/eel.svg",         "eel",         "anguille"     ],
-  ["./Assets/icon/falcon.svg",      "falcon",      "faucon"       ],
-  ["./Assets/icon/fly.svg",         "fly",         "mouche"       ],
-  ["./Assets/icon/frog.svg",        "frog",        "grenouille"   ],
-  ["./Assets/icon/grasshopper.svg", "grasshopper", "sauterelle"   ],
-  ["./Assets/icon/horse.svg",       "horse",       "cheval"       ],
-];
-console.log(selected_cards);
-const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
-
 /* fonction qui crée une carte à partir d'une URL/adresse card_address
 <div class="card" data-value="./Adresse/de/l'image.svg">
   <img class="card_content" src="./Adresse/de/l'image.svg">
@@ -93,11 +44,21 @@ function duplicate_array(array_simple) {
   return array_double;
 };
 
-// fonction qui mélange le tableau
+// fonction qui mélange un tableau
 function shuffle_array (array) {
   const array_shuffled = array.sort(() => 0.5 - Math.random());
   return array_shuffled
 };
+
+// fonction qui renvoie les n premières valeurs d'un tableau
+function select_n_cards (array,n) {
+  let array_out = [];
+  array = shuffle_array(array);
+  for(let i = 0; i <=n; i++) {
+    array_out.push(array[i]);
+  }
+  return array_out;
+}
 
 // fonction qui retourne une carte au click
 function on_card_click(elem){
@@ -105,13 +66,54 @@ function on_card_click(elem){
   card.classList.add("flip");               // ajoute la class="flip" au parent
 };
 
-// création des n cartes
+// ---- FIN DES DECLARATION DE FONCTION ---------- FIN DES DECLARATION DE FONCTION ------------
+
+const available_cards = [
+  ["./Assets/icon/ant.svg",         "ant",         "fourmi"       ],
+  ["./Assets/icon/bat.svg",         "bat",         "chauve-souris"],
+  ["./Assets/icon/bear.svg",        "bear",        "ours"         ],
+  ["./Assets/icon/bee.svg",         "bee",         "abeille"      ],
+  ["./Assets/icon/butterfly.svg",   "butterfly",   "papillon"     ],
+  ["./Assets/icon/cat.svg",         "cat",         "chat"         ],
+  ["./Assets/icon/cow.svg",         "cow",         "vache"        ],
+  ["./Assets/icon/dog.svg",         "dog",         "chien"        ],
+  ["./Assets/icon/donkey.svg",      "donkey",      "âne"          ],
+  ["./Assets/icon/duck.svg",        "duck",        "canard"       ],
+  ["./Assets/icon/eel.svg",         "eel",         "anguille"     ],
+  ["./Assets/icon/falcon.svg",      "falcon",      "faucon"       ],
+  ["./Assets/icon/fish.svg",        "fish",        "poisson"      ],
+  ["./Assets/icon/fly.svg",         "fly",         "mouche"       ],
+  ["./Assets/icon/fox.svg",         "fox",         "renard"       ],
+  ["./Assets/icon/frog.svg",        "frog",        "grenouille"   ],
+  ["./Assets/icon/goat.svg",        "goat",        "chèvre"       ],
+  ["./Assets/icon/grasshopper.svg", "grasshopper", "sauterelle"   ],
+  ["./Assets/icon/horse.svg",       "horse",       "cheval"       ],
+  ["./Assets/icon/ladybug.svg",     "ladybug",     "coccinelle"   ],
+  ["./Assets/icon/monkey.svg",      "monkey",      "singe"        ],
+  ["./Assets/icon/otter.svg",       "otter",       "loutre"       ],
+  ["./Assets/icon/pig.svg",         "pig",         "cochon"       ],
+  ["./Assets/icon/rabbit.svg",      "rabbit",      "lapin"        ],
+  ["./Assets/icon/shark.svg",       "shark",       "requin"       ],
+  ["./Assets/icon/sheep.svg",       "sheep",       "mouton"       ],
+  ["./Assets/icon/snail.svg",       "snail",       "escargot"     ],
+  ["./Assets/icon/snake.svg",       "snake",       "serpent"      ],
+  ["./Assets/icon/spider.svg",      "spider",      "araignée"     ],
+  ["./Assets/icon/whale.svg",       "whale",       "baleine"      ]
+];
+
+const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
+
+let selected_cards = select_n_cards(available_cards,18);
+
+console.log(selected_cards);
+
+// création des 2*n cartes
 let all_cards = duplicate_array(selected_cards);
-console.log(all_cards);
+// console.log(all_cards);
 
 // mélange des cartes
 all_cards = shuffle_array(all_cards);
-console.log(all_cards);
+// console.log(all_cards);
 
 // affichage des cartes dans le html
 all_cards.forEach(card_to_create => {
