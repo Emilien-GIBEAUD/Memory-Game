@@ -26,7 +26,7 @@ function create_card(card_address, english_name, french_name) {
   name_fr.appendChild(txt_fr);
   card.appendChild(name_fr);
 
-  card.addEventListener("click", on_card_click);
+  card.addEventListener("click", on_card_click);        // ajoute un écouteur d'événement au click
 
   return card;
 };
@@ -54,20 +54,49 @@ function shuffle_array (array) {
 function select_n_cards (array,n) {
   let array_out = [];
   array = shuffle_array(array);
-  for(let i = 0; i <=n; i++) {
+  for(let i = 0; i <n; i++) {
     array_out.push(array[i]);
   }
   return array_out;
 }
 
 // fonction qui retourne une carte au click
-function on_card_click(elem){
+async function on_card_click(elem){
   const card = elem.target.parentElement;   // cible le parent
   card.classList.add("flip");               // ajoute la class="flip" au parent
+
+  cards_to_check.push(card);  // ajoute une carte à vérifier
+  // console.log("cards_to_check avant if = " + cards_to_check); // debug
+
+  if(cards_to_check.length === 2) {         // si 2 cartes ont été sélectionnées
+    let my_timeout = setTimeout(() => {
+      if(cards_to_check[0].dataset.value === cards_to_check[1].dataset.value) { // paire trouvée
+        // ajoute les class="matched" et supprime les écouteurs d'événement
+        cards_to_check[0].classList.add("matched");
+        cards_to_check[1].classList.add("matched");
+        cards_to_check[0].removeEventListener("click", on_card_click);
+        cards_to_check[1].removeEventListener("click", on_card_click);
+
+        nb_cards_discovered++;
+        if(nb_cards_discovered === nb_cards) {
+          window.alert("Bravo, vous avez gagné !!!");
+        }
+      }else{
+        cards_to_check[0].classList.remove("flip");   // supprime les class="flip"
+        cards_to_check[1].classList.remove("flip");   // supprime les class="flip"
+      }
+      cards_to_check = [];                            // suppression des cartes à vérifier
+    }, 1000);
+
+    if(cards_to_check.length === 0) {   // NE FONCTIONNE PAS A VOIR PLUS TARD
+      clearTimeout(my_timeout);         // pour supprimer la tempo quand les cartes sont trouvées
+    }
+  }
 };
 
-// ---- FIN DES DECLARATION DE FONCTION ---------- FIN DES DECLARATION DE FONCTION ------------
+// --- FIN DES DECLARATIONS DE FONCTIONS ----- FIN DES DECLARATIONS DE FONCTIONS --------------
 
+// déclaration des 30 cartes disponnibles
 const available_cards = [
   ["./Assets/icon/ant.svg",         "ant",         "fourmi"       ],
   ["./Assets/icon/bat.svg",         "bat",         "chauve-souris"],
@@ -101,19 +130,16 @@ const available_cards = [
   ["./Assets/icon/whale.svg",       "whale",       "baleine"      ]
 ];
 
-const game_board = document.getElementById("game_board");   // Récupère l'ID "game_board"
+// Récupère l'ID "game_board"
+const game_board = document.getElementById("game_board");
 
-let selected_cards = select_n_cards(available_cards,18);
-
-console.log(selected_cards);
-
-// création des 2*n cartes
-let all_cards = duplicate_array(selected_cards);
-// console.log(all_cards);
-
-// mélange des cartes
-all_cards = shuffle_array(all_cards);
-// console.log(all_cards);
+// récupère n cartes parmis les 30 disponnibles
+let nb_cards = 6;                               // Déclare le nombre de cartes à trouver
+let nb_cards_discovered = 0;
+let selected_cards = select_n_cards(available_cards,nb_cards);
+let all_cards = duplicate_array(selected_cards);  // duplication des cartes
+all_cards = shuffle_array(all_cards);             // mélange des cartes
+let cards_to_check = [];                          // cartes sélectionnées pour vérification
 
 // affichage des cartes dans le html
 all_cards.forEach(card_to_create => {

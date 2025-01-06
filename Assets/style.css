@@ -12,8 +12,8 @@ body {
 
 #game_board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(6, 100px);
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(7, 100px);
   gap: 10px;
   justify-content: center;
   margin: 20px auto;
@@ -28,14 +28,18 @@ body {
   cursor: pointer;      /* affiche le doigt au survol de l'élément */
 }
 .card_content {
-  height: 67px;
+  height: 65px;
   padding: 2px 15px;
 }
 .card .card_content, .card .name_en, .card .name_fr {
-  opacity: 0.1;
+  opacity: 0;
 }
 .card.flip .card_content, .card.flip .name_en, .card.flip .name_fr  {
   opacity: 1;
+}
+.card.matched {
+  border: solid thin green;
+  cursor: default;
 }
 .name_fr, .name_en{
   width: 100%;
