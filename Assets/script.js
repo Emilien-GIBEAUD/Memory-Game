@@ -121,9 +121,28 @@ function on_card_click(elem){
       window.clearTimeout(timer);         // pour supprimer la tempo quand les cartes sont trouvées
     }
   }
-
-
 };
+
+function restart() {      // réfléchir pour regrouper "game_preparation" et "restart"
+  console.log("Bouton recommencer clické")
+  // suppression des div "card"
+  const div_card = document.querySelectorAll(".card");
+  div_card.forEach(div => {
+    div.remove();
+  })
+  // mise à 0 des variables
+  nb_cards_discovered = 0;
+  selected_cards = select_n_cards(available_cards,nb_cards);
+  all_cards = duplicate_array(selected_cards);
+  all_cards = shuffle_array(all_cards);
+  cards_to_check = [];
+  // affichage des cartes
+  all_cards.forEach(card_to_create => {
+    const card_html = create_card(card_to_create[0],card_to_create[1],card_to_create[2],card_to_create[3]);
+    game_board.appendChild(card_html);
+  });
+  
+}
 
 // --- FIN DES DECLARATIONS DE FONCTIONS ----- FIN DES DECLARATIONS DE FONCTIONS --------------
 
@@ -173,12 +192,18 @@ let nb_cards = 4 ;// let nb_cards = window.prompt("Saisir le nombre de cates à 
 // window.alert(`Le jeux est créé avec ${nb_cards} cartes.`)
 
 let nb_cards_discovered = 0;
+
+// faire une fonction "game_preparation" pour simplifier le code
 let selected_cards = select_n_cards(available_cards,nb_cards);
 // console.log("selected = " + selected_cards);    // debug
 let all_cards = duplicate_array(selected_cards);  // duplication des cartes
 all_cards = shuffle_array(all_cards);             // mélange des cartes
 let cards_to_check = [];                          // cartes sélectionnées pour vérification
 // console.log("all_cards = " + all_cards);    // debug
+
+// pour bouton redémarrer
+const restart_button = document.getElementById("restart");
+restart_button.addEventListener("click", restart);
 
 // affichage des cartes dans le html
 all_cards.forEach(card_to_create => {
