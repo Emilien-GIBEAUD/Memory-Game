@@ -37,27 +37,17 @@ game_board.appendChild(create_card("./Assets/icon/bat.svg"));
 game_board.appendChild(create_card("./Assets/icon/bee.svg"));
 game_board.appendChild(create_card("./Assets/icon/frog.svg")); */
 
-// fonction qui duplique un tableau A NETTOYER A NETTOYER A NETTOYER A NETTOYER A NETTOYER
-function duplicate_array(array_simple) {    // A NETTOYER A NETTOYER A NETTOYER A NETTOYER
+// fonction qui duplique un tableau
+function duplicate_array(array_simple) {
   let array_double = [];
   array_double.push(...JSON.parse(JSON.stringify(array_simple))); // Copie profonde
   // ... : ajoute 1 à 1 les cases du tableau, ajoute le tableau complet dans la 1ère case sinon
-  // console.log("array_double = " + array_double);    // debug
 
   let array_simple_clone = JSON.parse(JSON.stringify(array_simple)); // Copie profonde
   for (let i = 0;i < array_simple_clone.length; i++){
-    array_simple_clone[i][3] = "carte 2";// pour différencier les 2 cartes
+    array_simple_clone[i][3] = "carte 2";                 // pour différencier les 2 cartes
   }
-  // console.log("array_simple_clone = " + array_simple_clone);    // debug
-  array_double.push(...array_simple_clone);
-  // console.log("array_double = " + array_double);    // debug
-  
-  // array_double.push(...array_simple);   // ... : ajoute une à une les cases du tableau
-  // array_double.push(...array_simple);   // ajoute le tableau complet dans la première case sinon
-  // console.log("array_double = " + array_double);    // debug
-  // for (let i = array_simple.length;i < array_simple.length * 2; i++){
-  //   array_double[i][3] = "carte 2";// pour différencier les 2 cartes
-  // }
+  array_double.push(...array_simple_clone);               // ajoute le clone avec les "carte 2"
   return array_double;
 };
 
@@ -164,7 +154,7 @@ const available_cards = [
 const game_board = document.getElementById("game_board");
 
 // récupère n cartes parmis les 30 disponnibles
-let nb_cards = 4 ;// let nb_cards = window.prompt("Saisir le nombre de cates à trouver (min : 4 ; max : 9)");  // Déclare le nombre de cartes à trouver
+let nb_cards = 9 ;// let nb_cards = window.prompt("Saisir le nombre de cartes à trouver (min : 4 ; max : 9)");  // Déclare le nombre de cartes à trouver
 // if(nb_cards > 9) {
 //   nb_cards = 9;
 // }else if(nb_cards < 4){
