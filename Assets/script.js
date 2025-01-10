@@ -61,15 +61,21 @@ function select_n_cards (array,n) {
 }
 
 // fonction qui retourne une carte au click
-async function on_card_click(elem){
+let click_disabled = false;   // pour désactiver le click durant le setTimeout
+function on_card_click(elem){
+  if(click_disabled){
+    return;
+  }
+
   const card = elem.target.parentElement;   // cible le parent
   card.classList.add("flip");               // ajoute la class="flip" au parent
 
   cards_to_check.push(card);  // ajoute une carte à vérifier
   // console.log("cards_to_check avant if = " + cards_to_check); // debug
-
+  
   if(cards_to_check.length === 2) {         // si 2 cartes ont été sélectionnées
-    let my_timeout = setTimeout(() => {
+    click_disabled = true;                  // click désactivé
+    let timer = window.setTimeout(() => {
       if(cards_to_check[0].dataset.value === cards_to_check[1].dataset.value) { // paire trouvée
         // ajoute les class="matched" et supprime les écouteurs d'événement
         cards_to_check[0].classList.add("matched");
@@ -86,12 +92,16 @@ async function on_card_click(elem){
         cards_to_check[1].classList.remove("flip");   // supprime les class="flip"
       }
       cards_to_check = [];                            // suppression des cartes à vérifier
-    }, 1000);
+      click_disabled = false;                         // click réactivé
+    }, 2000);
 
+    console.log("cards_to_check après vérif = " + cards_to_check.length);
     if(cards_to_check.length === 0) {   // NE FONCTIONNE PAS A VOIR PLUS TARD
-      clearTimeout(my_timeout);         // pour supprimer la tempo quand les cartes sont trouvées
+      window.clearTimeout(timer);         // pour supprimer la tempo quand les cartes sont trouvées
     }
   }
+
+
 };
 
 // --- FIN DES DECLARATIONS DE FONCTIONS ----- FIN DES DECLARATIONS DE FONCTIONS --------------
@@ -134,13 +144,13 @@ const available_cards = [
 const game_board = document.getElementById("game_board");
 
 // récupère n cartes parmis les 30 disponnibles
-let nb_cards = window.prompt("Saisir le nombre de cates à trouver (min : 4 ; max : 14)");  // Déclare le nombre de cartes à trouver
-if(nb_cards > 14) {
-  nb_cards = 14;
-}else if(nb_cards < 4){
-  nb_cards = 4;
-}
-window.alert(`Le jeux est créé avec ${nb_cards} cartes.`)
+let nb_cards = 4 ;// let nb_cards = window.prompt("Saisir le nombre de cates à trouver (min : 4 ; max : 9)");  // Déclare le nombre de cartes à trouver
+// if(nb_cards > 9) {
+//   nb_cards = 9;
+// }else if(nb_cards < 4){
+//   nb_cards = 4;
+// }
+// window.alert(`Le jeux est créé avec ${nb_cards} cartes.`)
 
 let nb_cards_discovered = 0;
 let selected_cards = select_n_cards(available_cards,nb_cards);
