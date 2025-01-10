@@ -154,12 +154,13 @@ const available_cards = [
 const game_board = document.getElementById("game_board");
 
 // récupère n cartes parmis les 30 disponnibles
-let nb_cards = 9 ;// let nb_cards = window.prompt("Saisir le nombre de cartes à trouver (min : 4 ; max : 9)");  // Déclare le nombre de cartes à trouver
-// if(nb_cards > 9) {
-//   nb_cards = 9;
-// }else if(nb_cards < 4){
-//   nb_cards = 4;
-// }
+// let nb_cards = 9 ;
+let nb_cards = window.prompt("Saisir le nombre de cartes à trouver (min : 4 ; max : 9)");  // Déclare le nombre de cartes à trouver
+if(nb_cards > 9) {
+  nb_cards = 9;
+}else if(nb_cards < 4){
+  nb_cards = 4;
+}
 // window.alert(`Le jeux est créé avec ${nb_cards} cartes.`)
 
 let nb_cards_discovered = 0;
