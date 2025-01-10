@@ -7,8 +7,14 @@
 }
 
 body {
+  text-align: center;
   font-family: Arial, sans-serif;
-  text-align: center;}
+}
+
+.settings {
+  padding: 5px;
+  display: flex;
+}
 
 #game_board {
   display: grid;
