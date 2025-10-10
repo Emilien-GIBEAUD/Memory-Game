@@ -14,12 +14,38 @@ body {
 .settings {
   padding: 5px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+.input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 480px) {
+  label {
+    width: 70px;  
+  }
+}
+input[type="number"] {
+  text-align: center;
+  width: 45px;
+  padding: 3px;
+}
+.btn {
+  width: auto;
+  height: auto;
+  padding: 5px 8px;
+  border-width: thin;
+  border-radius: 10px;
 }
 
 #game_board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(6, 100px);
+  /* grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(6, 100px); */
   gap: 5px;
   justify-content: center;
   margin: 20px auto;
@@ -37,15 +63,16 @@ body {
   height: 65px;
   padding: 2px 15px;
 }
-.card .card_content, .card .name_en, .card .name_fr {
-  opacity: 0;
-  /*opacity: 0.1;    debug */
-}
 .card.flip .card_content, .card.flip .name_en, .card.flip .name_fr  {
   opacity: 1;
 }
-.card.matched {
-  border: solid thin green;
+.card .card_content, .card .name_en, .card .name_fr {
+  opacity: 0;
+}
+.card img { /* Pour éviter que l'image s'affiche lors d'un drag */
+  -webkit-user-drag: none;
+}.card.matched {
+  border: solid medium green;
   cursor: default;
 }
 .name_fr, .name_en{
@@ -55,3 +82,4 @@ body {
   font-style: italic;
   font-size: smaller;
 }
+

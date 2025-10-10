@@ -13,4 +13,4 @@ docker build -t memory .
 - Création du conteneur, lancer dans un terminal :
 docker run -d -p 8080:80 --name memory memory
 
-- Le projet est accessible sur : http://localhost:8080/
+- Le projet sera accessible sur : http://localhost:8080/
