@@ -15,15 +15,26 @@
 
 <body>
   <div class="settings">
-    <input type="button" id="restart" value="Recommencer">
+    <div class="input">
+      <label for="horizontal">Cartes → (3≤n≤8)&nbsp:</label>
+      <input type="number" id="horizontal" value="3" min="3" max="8" step="1">
+    </div>
+
+    <div class="input">
+      <label for="vertical">Cartes ↓ (3≤n≤6)&nbsp:</label>
+      <input type="number" id="vertical" value="4" min="3" max="6" step="1">
+    </div>
+
+    <input type="button" id="start" class="btn" value="Recharger">
   </div>
   <div id="game_board">
-    <!-- Exemple de carte -->
-    <!-- <div class="card" data-value="./Assets/icon/ant.svg">
-      <img class="card_content" src="./Assets/icon/ant.svg">
-      <p>ant</p>
-      <p><em>(fourmi)</em></p>
-    </div> -->
+    <!-- Exemple de carte
+      <div class="card" data-value="./Assets/icon/grasshopper.svg" data-id="carte 2">
+        <img class="card_content" src="./Assets/icon/grasshopper.svg">
+        <p class="name_en">grasshopper</p>
+        <p class="name_fr">(sauterelle)</p>
+      </div>
+    -->
   </div>
 </body>
 </html>
